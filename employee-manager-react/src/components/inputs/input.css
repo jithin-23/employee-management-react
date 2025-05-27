@@ -1,0 +1,35 @@
+.input-field {
+    margin-top: 10px;
+    height: 40px;
+    padding-left: 20px;
+    background-color: #fafafa;
+    border: 1px solid #808080;
+    border-radius: 5px;
+}
+
+.input-submit {
+    padding: 0px 20px;
+    background-color: #03aeee;
+    border: none;
+    width: 150px;
+    color: white;
+    font-weight: bolder;
+    font-size: large;
+    height: 40px;
+    border-radius: 10px;
+    margin: 10px;
+    margin-left: 20px;
+}
+
+.input-reset {
+    padding: 0px 20px;
+    width: 150px;
+    font-weight: bolder;
+    font-size: large;
+    height: 40px;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}

@@ -1,0 +1,15 @@
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.formContent {
+    background-color: white;
+    /* width: 100%; */
+    padding: 20px;
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+}
