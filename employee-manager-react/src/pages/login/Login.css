@@ -1,9 +1,9 @@
-.body-content{
+.body-content {
     display: flex;
     padding: 30px;
 }
 
-.login-left{
+.login-left {
     background-color: #83cfe4;
     width: 50%;
     height: 94vh;
@@ -40,4 +40,42 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
+}
+
+.input-box-field {
+    border: 1px solid;
+    width: 100%;
+    height: 100%;
+    padding-left: 20px;
+    border-radius: 5px;
+}
+
+.input-box-login {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    /* padding-left: 20px; */
+    background-color: #ffffff;
+    /* border: 1px solid #808080; */
+    border: 0px;
+    display: flex;
+    position: relative;
+}
+
+.input-box-btn {
+    border: none;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    z-index: 2;
+    color: #2c65b9;
+    background-color: #ffffff;
+    text-decoration: underline;
+    font-size: medium;
+}
+
+label.error-label {
+    color: #ff0000;
+    background-color: #ffa3a3;
+    padding: 5px;
 }
