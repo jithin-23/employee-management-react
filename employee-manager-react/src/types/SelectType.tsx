@@ -1,4 +1,4 @@
-export interface StatusOptions {
+export interface Options {
     value: string;
     text: string;
 }
@@ -6,5 +6,7 @@ export interface StatusOptions {
 export interface SelectStatus {
     id:string,
     label:string,
-    options: StatusOptions[]
+    options: Options[]
+    value:string,
+    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }

@@ -1,0 +1,23 @@
+.list-table {
+  width: 100%;
+  /* border: 1px solid black; */
+  border-spacing: 0px;
+  text-align: center;
+  border-spacing: 0px 10px;
+  background-color: #f0f0f0;
+}
+
+.list-table-header {
+  background-color: #eaf9ff;
+}
+
+.list-table-body {
+  background-color: #ffffff;
+}
+
+.list-table-column {
+  width: 14%;
+  padding: 15px;
+}
+
+

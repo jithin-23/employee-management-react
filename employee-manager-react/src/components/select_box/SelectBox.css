@@ -1,11 +1,12 @@
 .select-box {
-    width: 30%;
+    width: 29%;
     margin: 20px;
     display: flex;
     flex-direction: column;
 }
 
 .select {
+    width: 96%;
     margin-top: 10px;
     height: 40px;
     padding-left: 20px;

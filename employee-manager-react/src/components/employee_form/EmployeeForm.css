@@ -1,0 +1,22 @@
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-container > * {
+    width: 30%;
+}
+
+.formContent {
+    background-color: white;
+    padding: 20px;
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-employee-buttons {
+    display: flex;
+}

@@ -1,0 +1,25 @@
+.list-table-cell {
+  padding: 15px;
+  
+}
+
+.list-table-action-btn {
+  border: 0px ;
+  background-color: #ffffff;
+}
+
+.list-table-action-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.react-icon-trash {
+  color: red;
+  font-size: 20px;
+}
+
+.react-icon-edit {
+  color: #10aac0;
+  font-size: 20px;
+}
+
+

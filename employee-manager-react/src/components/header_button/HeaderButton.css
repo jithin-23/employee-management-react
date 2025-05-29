@@ -1,0 +1,36 @@
+.header-button-grp {
+    display: flex;
+    align-items: center;
+    background-color: #EAF9FF;
+    border-radius: 25px;
+    height: 50px;
+    padding-right: 20px;
+    gap: 10px;
+}
+
+.header-button-grp-btn {
+    height: 100%;
+    border: 0px;
+    background-color: #03aeee;
+    border-radius: 50% ;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.header-button-grp-btn:hover {
+    background-color: #0186b6;
+
+}
+
+
+.header-button-grp-icon {
+    height: 100%;
+    filter: brightness(0) invert(1);
+
+
+}
+
+.header-button-grp-text {
+    font-size: medium;
+    font-weight: 100;
+}

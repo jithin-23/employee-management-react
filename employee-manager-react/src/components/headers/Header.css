@@ -1,6 +1,34 @@
 .heading {
     background-color: white;
-    align-content: center;
     padding: 20px;
     margin-bottom: 20px;
+    font-size: x-large;
+    font-weight: bolder;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-adornment {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .header-filter-box {
+    font-weight: 100;
+    font-size: medium;
+    margin-right: 40px;
+  }
+
+  .header-filter-select {
+    width: 130px;
+    height: 30px;
+    border-radius: 15px;
+    margin-left: 10px;
+    border: 0px;
+    background-color: #EAF9FF;
+    text-align: center;
+    cursor: pointer;
   }

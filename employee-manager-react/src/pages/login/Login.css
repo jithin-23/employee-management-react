@@ -33,7 +33,7 @@
 }
 
 .content {
-    width: 50%;
+    width: 55%;
 }
 
 .form-content {
@@ -42,31 +42,11 @@
     flex-direction: column;
 }
 
-.input-box-field {
-    border: 1px solid;
-    width: 100%;
-    height: 100%;
-    padding-left: 20px;
-    border-radius: 5px;
-}
-
-.input-box-login {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    height: 40px;
-    /* padding-left: 20px; */
-    background-color: #ffffff;
-    /* border: 1px solid #808080; */
-    border: 0px;
-    display: flex;
-    position: relative;
-}
-
 .input-box-btn {
     border: none;
     position: absolute;
-    right: 10px;
-    top: 12px;
+    right: 20px;
+    top: 20px;
     z-index: 2;
     color: #2c65b9;
     background-color: #ffffff;
@@ -79,3 +59,23 @@ label.error-label {
     background-color: #ffa3a3;
     padding: 5px;
 }
+
+.checkbox-group {
+    margin:5px;
+}
+
+.login-btn {
+    background-color: #03aeee;
+    border: none;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    height: 50px;
+    z-index: 3;
+}
+
+.login-btn:disabled {
+    background-color: gray;
+}
+

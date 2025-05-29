@@ -4,11 +4,10 @@
     width: 300px;
 }
 
-.sidebar img.logo {
-    margin-top: 5px;
-    width: 100%;
-    padding-top: 10px;
-    background-color: #fafafa;
+.sidebar img.sidebar-logo {
+    width: 94%;
+    background-color: #f0f0f0;
+    padding: 10px;
 }
 
 img.icon {

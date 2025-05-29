@@ -1,8 +1,35 @@
 .layout-content {
-    padding: 20px;
-    margin-top: 100px;
-    margin-left: 300px;
-    width: calc(100% - 340px);
-    background-color: #f0f0f0;
-    height: 80vh ; 
+  padding: 20px;
+  margin-top: 70px;
+  margin-left: 300px;
+  width: calc(100% - 340px);
+  background-color: #f0f0f0;
+  height: calc(100vh - 100px);
+}
+
+.logout-box {
+  position: absolute;
+  display: flex;
+  right: 10px;
+  top: 5px;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.logout-btn {
+  background-color: #03aeee;
+  border-radius: 20px;
+  height: 45px;
+  border: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  align-items: center;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #037cee;
 }
