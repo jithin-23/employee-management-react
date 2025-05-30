@@ -27,14 +27,16 @@ const TableRow = (props: TableRowProps) => {
     navigate(props.id);
   };
 
-  const handleDelete = () => {
-    setShowPopup(true);
-  };
-
   return (
     <>
-      {showPopup && <PopupWindow onClick={setShowPopup} />}
-      <tr>
+      {showPopup && (
+        <PopupWindow
+          onClick={(value) => {
+            setShowPopup(value);
+          }}
+        />
+      )}
+      <tr className="list-table-row">
         <td
           className="list-table-cell"
           onClick={handleRowClick}
@@ -53,7 +55,10 @@ const TableRow = (props: TableRowProps) => {
           <button
             className="list-table-action-btn"
             type="button"
-            onClick={handleDelete}
+            // onClick={handleDelete}
+            onClick={() => {
+              setShowPopup(true);
+            }}
           >
             <FaRegTrashCan className="react-icon-trash" />
           </button>

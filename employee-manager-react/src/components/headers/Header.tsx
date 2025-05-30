@@ -4,6 +4,7 @@ import { useState } from "react";
 import HeaderButton, {
   type HeaderButtonTypes,
 } from "../header_button/HeaderButton";
+import { statusOptions } from "../../types/InputOptions";
 
 interface HeaderProps {
   title: string;
@@ -15,6 +16,8 @@ const Header = ({ title, filterby = false, headerBtn, empId }: HeaderProps) => {
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [filter, setFilter] = useState<string>("");
+
+  const availableStatusOptions = statusOptions;
 
   const handleFilterChange = (status: string) => {
     const newSearchParams = new URLSearchParams(searchParams);
@@ -43,9 +46,10 @@ const Header = ({ title, filterby = false, headerBtn, empId }: HeaderProps) => {
               <option value="all" selected>
                 All
               </option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-              <option value="probation">Probration</option>
+
+              {availableStatusOptions.map((item) => {
+                return <option value={item.value}>{item.text}</option>;
+              })}
             </select>
           </div>
         )}

@@ -1,4 +1,4 @@
-import type { Options } from "../../types/SelectType";
+import { departmentOptions, roleOptions, statusOptions } from "../../types/InputOptions";
 import InputBox from "../input_box/InputBox";
 import SelectBox from "../select_box/SelectBox";
 import "./EmployeeForm.css";
@@ -31,21 +31,7 @@ const EmployeeForm = ({
   };
   onChange: (field: string, value: string) => void;
 }) => {
-  const statusOptions: Options[] = [
-    { value: "ACTIVE", text: "ACTIVE" },
-    { value: "INACTIVE", text: "INACTIVE" },
-    { value: "PROBRATION", text: "PROBATION" },
-  ];
-  const departmentOptions: Options[] = [
-    { value: "Finance", text: "Finance" },
-    { value: "Management", text: "Management" },
-  ];
-  const roleOptions: Options[] = [
-    { value: "HR", text: "HR" },
-    { value: "UI", text: "UI" },
-    { value: "UX", text: "UX" },
-    { value: "DEVELOPER", text: "DEVELOPER" },
-  ];
+  
 
   return (
     <form>

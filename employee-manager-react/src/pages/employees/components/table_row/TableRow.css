@@ -1,6 +1,10 @@
+.list-table-row {
+  background-color: #ffffff;
+  border-radius: 30px ;
+}
+
 .list-table-cell {
   padding: 15px;
-  
 }
 
 .list-table-action-btn {

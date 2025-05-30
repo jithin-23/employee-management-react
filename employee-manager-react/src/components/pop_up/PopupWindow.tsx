@@ -1,13 +1,14 @@
 import "./PopupWindow.css";
 
-const PopupWindow = ({
-  onClick,
-}: {
-  onClick: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const PopupWindow = ({ onClick }: { onClick: (value: boolean) => void }) => {
   const handleCancel = () => {
     onClick(false);
   };
+
+  const handleSubmit = () => {
+    onClick(false);
+  };
+
   return (
     <div className="popup-overlay">
       <div className="popup-content">
@@ -26,7 +27,7 @@ const PopupWindow = ({
           <button
             type="button"
             className="popup-btn popup-btn-cancel"
-            onClick={handleCancel}
+            onClick={handleSubmit}
           >
             Cancel
           </button>

@@ -1,7 +1,10 @@
-import { useState } from "react";
-import EmployeeForm from "../../components/employee_form/EmployeeForm";
+import { lazy, Suspense, useState } from "react";
 import Header from "../../components/headers/Header";
 import "./CreateEmployee.css";
+
+const EmployeeForm = lazy(
+  () => import("../../components/employee_form/EmployeeForm")
+);
 
 const CreateEmployee = () => {
   const [values, setValues] = useState({
@@ -25,13 +28,15 @@ const CreateEmployee = () => {
     <div className="create-employee-body">
       <Header title="Create Employee" />
 
-      <EmployeeForm
-        type="create"
-        values={values}
-        onChange={(field, value) => {
-          setValues({ ...values, [field]: value });
-        }}
-      />
+      <Suspense fallback={<div>Create Form is loading please wait...</div>}>
+        <EmployeeForm
+          type="create"
+          values={values}
+          onChange={(field, value) => {
+            setValues({ ...values, [field]: value });
+          }}
+        />
+      </Suspense>
     </div>
   );
 };
