@@ -1,11 +1,21 @@
+import { useDispatch } from "react-redux";
 import "./PopupWindow.css";
+import { EMPLOYEE_ACTION_TYPES } from "../../store/employee/employee.types";
 
-const PopupWindow = ({ onClick }: { onClick: (value: boolean) => void }) => {
+const PopupWindow = ({
+  onClick,
+  employeeId,
+}: {
+  onClick: (value: boolean) => void;
+  employeeId: string;
+}) => {
+  const dispatch = useDispatch();
   const handleCancel = () => {
     onClick(false);
   };
 
   const handleSubmit = () => {
+    dispatch({ type: EMPLOYEE_ACTION_TYPES.DELETE, payload: employeeId });
     onClick(false);
   };
 
@@ -20,14 +30,14 @@ const PopupWindow = ({ onClick }: { onClick: (value: boolean) => void }) => {
           <button
             type="button"
             className="popup-btn popup-btn-confirm"
-            onClick={handleCancel}
+            onClick={handleSubmit}
           >
             Confirm
           </button>
           <button
             type="button"
             className="popup-btn popup-btn-cancel"
-            onClick={handleSubmit}
+            onClick={handleCancel}
           >
             Cancel
           </button>

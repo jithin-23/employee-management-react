@@ -1,6 +1,9 @@
 import { lazy, Suspense, useState } from "react";
 import Header from "../../components/headers/Header";
 import "./CreateEmployee.css";
+import { EMPLOYEE_ACTION_TYPES } from "../../store/employee/employee.types";
+import { useDispatch } from "react-redux";
+import store from "../../store/store";
 
 const EmployeeForm = lazy(
   () => import("../../components/employee_form/EmployeeForm")
@@ -8,21 +11,25 @@ const EmployeeForm = lazy(
 
 const CreateEmployee = () => {
   const [values, setValues] = useState({
-    employeeID: "",
-    employeeName: "",
+    employeeId: "",
+    name: "",
     password: "",
     email: "",
     age: "",
-    joiningDate: "",
-    department: "",
+    dateOfJoining: "",
+    departmentId: "",
     status: "",
     role: "",
     experience: "",
-    addressLine1: "",
-    addressLine2: "",
-    houseNo: "",
-    pincode: "",
+    address: {
+      houseNo: "",
+      line1: "",
+      line2: "",
+      pincode: "",
+    },
   });
+
+  const dispatch = useDispatch();
 
   return (
     <div className="create-employee-body">
@@ -33,8 +40,22 @@ const CreateEmployee = () => {
           type="create"
           values={values}
           onChange={(field, value) => {
-            setValues({ ...values, [field]: value });
+            if (field.startsWith("address.")) {
+              const key = field.split(".")[1];
+              setValues({
+                ...values,
+                address: {
+                  ...values.address,
+                  [key]: value,
+                },
+              });
+            } else {
+              setValues({ ...values, [field]: value });
+            }
           }}
+          onClick={() =>
+            dispatch({ type: EMPLOYEE_ACTION_TYPES.ADD, payload: values })
+          }
         />
       </Suspense>
     </div>

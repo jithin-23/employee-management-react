@@ -1,4 +1,13 @@
-import { departmentOptions, roleOptions, statusOptions } from "../../types/InputOptions";
+import type {
+  Address,
+  Role,
+  Status,
+} from "../../store/employee/employee.types";
+import {
+  departmentOptions,
+  roleOptions,
+  statusOptions,
+} from "../../types/InputOptions";
 import InputBox from "../input_box/InputBox";
 import SelectBox from "../select_box/SelectBox";
 import "./EmployeeForm.css";
@@ -10,29 +19,26 @@ const EmployeeForm = ({
   empId,
   values,
   onChange,
+  onClick,
 }: {
   type: EmployeeFormTypes;
   empId?: string;
   values: {
-    employeeID: string;
-    employeeName: string;
-    password: string;
+    employeeId: string;
     email: string;
+    name: string;
     age: string;
-    joiningDate: string;
-    department: string;
-    status: string;
+    address: Address;
+    password: string;
     role: string;
+    dateOfJoining: string;
     experience: string;
-    addressLine1: string;
-    addressLine2: string;
-    houseNo: string;
-    pincode: string;
+    status: string;
+    departmentId: string;
   };
   onChange: (field: string, value: string) => void;
+  onClick?: () => void;
 }) => {
-  
-
   return (
     <form>
       <div className="formContent">
@@ -41,23 +47,23 @@ const EmployeeForm = ({
             id="empId"
             placeholder="Employee ID"
             type="text"
-            value={values.employeeID}
+            value={values.employeeId}
             label="Employee ID"
             disabled={type === "edit" ? true : false}
             className={type === "edit" ? "disabled" : ""}
             onChange={(event) => {
-              onChange("employeeID", event.target.value);
+              onChange("employeeId", event.target.value);
             }}
           />
 
           <InputBox
             id="ename"
             placeholder="Employee Name"
-            value={values.employeeName}
+            value={values.name}
             type="text"
             label="Employee Name"
             onChange={(event) => {
-              onChange("employeeName", event.target.value);
+              onChange("name", event.target.value);
             }}
           />
 
@@ -96,12 +102,12 @@ const EmployeeForm = ({
 
           <InputBox
             id="joiningDate"
-            value={values.joiningDate}
+            value={values.dateOfJoining}
             placeholder="Joining Date"
             type="date"
             label="Joining Date"
             onChange={(event) => {
-              onChange("joiningDate", event.target.value);
+              onChange("dateOfJoining", event.target.value);
             }}
           />
 
@@ -109,9 +115,9 @@ const EmployeeForm = ({
             id="department"
             label="Department"
             options={departmentOptions}
-            value={values.department}
+            value={values.departmentId}
             onChange={(event) => {
-              onChange("department", event.target.value);
+              onChange("departmentId", event.target.value);
             }}
           />
 
@@ -139,42 +145,42 @@ const EmployeeForm = ({
             <label>Address</label>
             <input
               className="employee-input-field"
-              value={values.addressLine1}
+              value={values.address.line1}
               id="line1"
               placeholder="Addres line 1"
               type="text"
               onChange={(event) => {
-                onChange("addressLine1", event.target.value);
+                onChange("address.line1", event.target.value);
               }}
             />
             <input
               className="employee-input-field"
               id="line2"
-              value={values.addressLine2}
+              value={values.address.line2}
               placeholder="Address line 2"
               type="text"
               onChange={(event) => {
-                onChange("addressLine2", event.target.value);
+                onChange("address.line2", event.target.value);
               }}
             />
             <input
               className="employee-input-field"
               id="houseNo"
-              value={values.houseNo}
+              value={values.address.houseNo}
               placeholder="House Number"
               type="text"
               onChange={(event) => {
-                onChange("houseNo", event.target.value);
+                onChange("address.houseNo", event.target.value);
               }}
             />
             <input
               className="employee-input-field"
               id="pincode"
-              value={values.pincode}
+              value={values.address.pincode}
               placeholder="Pincode"
               type="text"
               onChange={(event) => {
-                onChange("pincode", event.target.value);
+                onChange("address.pincode", event.target.value);
               }}
             />
           </div>
@@ -191,21 +197,40 @@ const EmployeeForm = ({
           />
         </div>
         <div className="create-employee-buttons">
-          <InputBox
+          {/* <InputBox
             value="Create"
             className="submit"
-            type="submit"
+            type="button"
             placeholder="Create"
             id="submit"
-          />
+          /> */}
 
-          <InputBox
+          <button
+            value= {type === "edit" ? "Save" : "Create"}
+            className="form-create-btn"
+            type="button"
+            id="create"
+            onClick={onClick}
+          >
+            {type === "edit" ? "Save" : "Create"}
+          </button>
+
+          {/* <InputBox
             value="Reset"
             className="reset"
             type="reset"
             placeholder="Reset"
             id="reset"
-          />
+          /> */}
+
+          <button
+            value="Reset"
+            className="form-reset-btn"
+            type="reset"
+            id="reset"
+          >
+            Reset
+          </button>
         </div>
       </div>
     </form>

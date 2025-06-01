@@ -1,7 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import CreateEmployee from "./pages/create_employee/CreateEmployee";
 import Login from "./pages/login/Login";
@@ -11,6 +8,8 @@ import NotFound from "./pages/not_found/NotFound";
 import EmployeeDetails from "./pages/employee_details/EmployeeDetails";
 import Employees from "./pages/employees/Employees";
 import EditEmployee from "./pages/edit_employee/EditEmployee";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 const router = createBrowserRouter([
   {
@@ -23,13 +22,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/employee",
-    element: <Layout/>,
+    element: <Layout />,
     children: [
       { path: "", element: <Employees /> },
       { path: "create", element: <CreateEmployee /> },
       { path: "edit/:id", element: <EditEmployee /> },
       { path: ":id", element: <EmployeeDetails /> },
-      
     ],
   },
   {
@@ -39,12 +37,10 @@ const router = createBrowserRouter([
 ]);
 function App() {
   return (
-    //  <CreateEmployee/>
-    // <Login />
-    // <UncontrolledLogin/>
-    <div>
+    
+    <Provider store={store}>
       <RouterProvider router={router} />
-    </div>
+    </Provider>
   );
 }
 

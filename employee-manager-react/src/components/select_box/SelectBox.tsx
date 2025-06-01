@@ -12,6 +12,10 @@ const SelectBox = (props: SelectStatus) => {
         value={props.value}
         onChange={props.onChange}
       >
+        <option className="input-field" disabled value="">
+          {" "}
+          Select {props.label}
+        </option>
         {props.options.map((item) => {
           return (
             <option className="input-field" value={item.value}>

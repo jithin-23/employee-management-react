@@ -4,6 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   border-radius: 15px;
+  gap: 20px;
 }
 
 .details-card {
@@ -14,9 +15,12 @@
 
 .details-card-title {
     color: #8b8d9d;
+    font-size: large;
 }
 
 .details-card-subtitle {
     color: #27282c;
     margin-top: 8px;
+    max-width: 100px;
+    display: inline-block;
 }

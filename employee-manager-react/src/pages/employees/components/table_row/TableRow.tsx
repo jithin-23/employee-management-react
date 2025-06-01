@@ -28,14 +28,6 @@ const TableRow = (props: TableRowProps) => {
   };
 
   return (
-    <>
-      {showPopup && (
-        <PopupWindow
-          onClick={(value) => {
-            setShowPopup(value);
-          }}
-        />
-      )}
       <tr className="list-table-row">
         <td
           className="list-table-cell"
@@ -70,9 +62,17 @@ const TableRow = (props: TableRowProps) => {
           >
             <MdOutlineEdit className="react-icon-edit" onClick={handleEdit} />
           </button>
+
+          {showPopup && (
+            <PopupWindow
+            employeeId= {props.id}
+              onClick={(value) => {
+                setShowPopup(value);
+              }}
+            />
+          )}
         </td>
       </tr>
-    </>
   );
 };
 

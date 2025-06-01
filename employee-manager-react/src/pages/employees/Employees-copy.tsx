@@ -5,19 +5,9 @@ import TableRow from "./components/table_row/TableRow";
 import type EmployeeType from "../../types/EmployeeType";
 import dummyEmployees from "../../data/DummyData";
 import { useSearchParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import store from "../../store/store";
-import type { Employee, EmployeeState } from "../../store/employee/employee.types";
-
 
 const Employees = () => {
-
-  const data = useSelector(state => state.employees)
-  // console.log(data)
-  // console.log(typeof(data))
-
-  const employees: Employee[] = data;
-  // const employees: EmployeeType[] = dummyEmployees;
+  const employees: EmployeeType[] = dummyEmployees;
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -45,14 +35,14 @@ const Employees = () => {
         </thead>
 
         <tbody className="list-table-body">
-          {filteredEmployees.map((employee: Employee) => (
+          {filteredEmployees.map((employee: EmployeeType) => (
             <TableRow
               name={employee.name}
-              id={employee.employeeId}
-              joinDate={employee.dateOfJoining.toString()}
+              id={employee.empId}
+              joinDate={employee.joinDate}
               role={employee.role}
               status={employee.status}
-              experience={employee.experience.toString()}
+              experience={JSON.stringify(employee.experience)}
             />
           ))}
         </tbody>
