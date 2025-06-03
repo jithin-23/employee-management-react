@@ -31,5 +31,6 @@
 }
 
 .logout-btn:hover {
-  background-color: #037cee;
+  background-color: #0186b6;
+  transform: scale(1.1);
 }

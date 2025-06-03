@@ -5,6 +5,11 @@ import "./EmployeeDetails.css";
 import StatusCell from "../employees/components/status_cell/StatusCell";
 import { useSelector } from "react-redux";
 import type { Employee } from "../../store/employee/employee.types";
+import { useAppSelector } from "../../store/store";
+import {
+  useGetEmployeeByIdQuery,
+  useLazyGetEmployeeByIdQuery,
+} from "../../api-service/employees/employees.api";
 
 const EmployeeDetails = () => {
   const { id } = useParams();
@@ -12,9 +17,15 @@ const EmployeeDetails = () => {
 
   // const employee = employees.find((data) => data.empId === id);
 
-  const employees = useSelector((state) => state.employees);
-  const employee = employees.find((data: Employee) => data.employeeId === id);
+  // const employees = useSelector((state) => state.employees);
 
+  // const employees = useAppSelector(state => state.employee.employees)
+  // const employee = employees.find((data: Employee) => data.employeeId === id);
+
+  const { data } = useGetEmployeeByIdQuery({ id });
+  const employee: Employee = data;
+
+  console.log(employee);
   return (
     <div>
       <Header title="Employee Details" headerBtn="edit" empId={id} />
@@ -39,7 +50,7 @@ const EmployeeDetails = () => {
           <div className="details-card">
             <span className="details-card-title">Joining Date</span>
             <span className="details-card-subtitle">
-              {employee.dateOfJoining}
+              {new Date(employee.dateOfJoining).toISOString().split("T")[0]}
             </span>
           </div>
 
@@ -64,17 +75,19 @@ const EmployeeDetails = () => {
           </div>
 
           <div className="details-card">
-            <span className="details-card-title">Address</span>
-            <span className="details-card-subtitle">
-              {employee.address.line1},{employee.address.line2},
-              {employee.address.houseNo}, {employee.address.pincode}
-            </span>
-          </div>          
-
-          <div className="details-card">
             <span className="details-card-title">Department</span>
             <span className="details-card-subtitle">
-              {employee.departmentId}
+              {employee.department.name}
+            </span>
+          </div>
+
+          <div className="details-card">
+            <span className="details-card-title">Address</span>
+            <span className="details-card-subtitle">
+              {employee.address.line1}, {""}
+              {employee.address.line2}, {""}
+              {employee.address.houseNo}, {""}
+              {employee.address.pincode}
             </span>
           </div>
         </div>

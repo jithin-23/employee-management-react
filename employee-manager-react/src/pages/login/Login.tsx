@@ -5,8 +5,11 @@ import MousePosition from "../../hooks/mousePosition.ts";
 import { useNavigate } from "react-router-dom";
 import { UseLocalStorage } from "../../hooks/useLocalStorage.ts";
 import Input from "./inputs/Input.tsx";
+import { useLoginMutation } from "../../api-service/auth/login.api.ts";
 
 const Login = () => {
+  const [error, setError] = useState("");
+  const [login, { isLoading }] = useLoginMutation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState<string>("");
   const [labelText, setLabelText] = useState("");
@@ -30,7 +33,7 @@ const Login = () => {
 
   useEffect(() => {
     if (username.length >= 10)
-      setLabelText("Username must be less than 10 characters");
+      setLabelText("Username must be less than 20 characters");
     else setLabelText("");
   }, [username]);
 
@@ -44,12 +47,26 @@ const Login = () => {
     localStorage.setItem("isloggedIn", "false");
   }, []);
 
-  const handleSubmit = () => {
-    localStorage.setItem("username", username);
-    localStorage.setItem("password", password);
-    localStorage.setItem("isloggedIn", "true");
+  const handleSubmit = async () => {
+    // localStorage.setItem("username", username);
+    // localStorage.setItem("password", password);
 
-    navigate("/employee");
+    // const response = await login({ email: username, password: password });
+    // if (response.data?.accesstoken) {
+    //   localStorage.setItem("token", response.data.accesstoken);
+    //   navigate("/employee");
+    // }
+
+    login({ email: username, password: password })
+      .unwrap()
+      .then((response) => {
+        localStorage.setItem("token", response.accesstoken);
+        localStorage.setItem("isloggedIn", "true");
+        navigate("/employee");
+      })
+      .catch((error) => {
+        setError(error.data.message);
+      });
   };
 
   return (
@@ -71,6 +88,7 @@ const Login = () => {
         <div className="content">
           <Image src="/assets/kv-logo.png" alt="Keyvalue Logo" />
           <div className="form-content">
+            <label htmlFor="username">Username</label>
             <Input
               type="text"
               id="username"
@@ -92,9 +110,11 @@ const Login = () => {
                 </button>
               }
             />
-            {username.length >= 10 && (
+            {username.length >= 30 && (
               <label className="error-label">{labelText}</label>
             )}
+            <label htmlFor="password">Password</label>
+
             <Input
               className="input-box-field"
               type={showPassword ? "text" : "password"}
@@ -133,11 +153,15 @@ const Login = () => {
               />
               <label htmlFor="show_password">Show Password</label>
             </div>
+
+            <p>{error}</p>
             <button
               title="Log In"
               className="login-btn"
               onClick={handleSubmit}
               ref={submitButtonRef}
+              disabled={isLoading}
+              type="submit"
             >
               Log In{" "}
             </button>

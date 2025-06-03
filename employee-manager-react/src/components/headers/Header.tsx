@@ -42,10 +42,9 @@ const Header = ({ title, filterby = false, headerBtn, empId }: HeaderProps) => {
               onChange={(event) => {
                 handleFilterChange(event.target.value);
               }}
+              // defaultValue="all"
             >
-              <option value="all" selected>
-                All
-              </option>
+              <option value="all">All</option>
 
               {availableStatusOptions.map((item) => {
                 return <option value={item.value}>{item.text}</option>;

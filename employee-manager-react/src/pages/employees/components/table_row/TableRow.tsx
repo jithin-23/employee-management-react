@@ -7,8 +7,9 @@ import { useState } from "react";
 import PopupWindow from "../../../../components/pop_up/PopupWindow";
 
 interface TableRowProps {
+  id:string
   name: string;
-  id: string;
+  employee_id: string;
   joinDate: string;
   role: string;
   status: string;
@@ -24,7 +25,7 @@ const TableRow = (props: TableRowProps) => {
   };
 
   const handleRowClick = () => {
-    navigate(props.id);
+    navigate((props.id).toString());
   };
 
   return (
@@ -36,7 +37,7 @@ const TableRow = (props: TableRowProps) => {
         >
           {props.name}
         </td>
-        <td className="list-table-cell">{props.id}</td>
+        <td className="list-table-cell">{props.employee_id}</td>
         <td className="list-table-cell">{props.joinDate}</td>
         <td className="list-table-cell">{props.role}</td>
         <td className="list-table-cell">
@@ -65,7 +66,7 @@ const TableRow = (props: TableRowProps) => {
 
           {showPopup && (
             <PopupWindow
-            employeeId= {props.id}
+            id= {props.id}
               onClick={(value) => {
                 setShowPopup(value);
               }}

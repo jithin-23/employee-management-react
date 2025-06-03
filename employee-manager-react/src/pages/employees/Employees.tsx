@@ -6,25 +6,30 @@ import type EmployeeType from "../../types/EmployeeType";
 import dummyEmployees from "../../data/DummyData";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import store from "../../store/store";
-import type { Employee, EmployeeState } from "../../store/employee/employee.types";
-
+import store, { useAppDispatch, useAppSelector } from "../../store/store";
+import type {
+  Employee,
+  EmployeeState,
+} from "../../store/employee/employee.types";
+import { useGetEmployeesQuery } from "../../api-service/employees/employees.api";
 
 const Employees = () => {
-
-  const data = useSelector(state => state.employees)
-  // console.log(data)
-  // console.log(typeof(data))
-
-  const employees: Employee[] = data;
-  // const employees: EmployeeType[] = dummyEmployees;
-
   const [searchParams, setSearchParams] = useSearchParams();
-
   const status = searchParams.get("status");
 
+  // const data = useSelector(state => state.employees)
+  // const data = useAppSelector((state) => state.employee.employees);
+
+  // const employees: Employee[] = data;
+  // const employees: EmployeeType[] = dummyEmployees;
+
+  // const {data:employees} = useGetEmployeesQuery({});
+  const { data = [] } = useGetEmployeesQuery({});
+  const employees = data;
+  console.log(employees)
+
   const filteredEmployees = status
-    ? employees.filter((employee) => employee.status === status)
+    ? employees.filter((employee: Employee) => employee.status === status)
     : employees;
 
   return (
@@ -32,7 +37,7 @@ const Employees = () => {
       <Header title="Employee List" filterby={true} headerBtn={"create"} />
 
       <table className="list-table">
-        <thead >
+        <thead>
           <tr className="list-table-header">
             <th className="list-table-column">Employee Name</th>
             <th className="list-table-column">Employee ID</th>
@@ -47,9 +52,14 @@ const Employees = () => {
         <tbody className="list-table-body">
           {filteredEmployees.map((employee: Employee) => (
             <TableRow
+              key={employee.id}
+              id={employee.id}
               name={employee.name}
-              id={employee.employeeId}
-              joinDate={employee.dateOfJoining.toString()}
+              employee_id={employee.employeeId}
+              joinDate={
+                // new Date(employee.dateOfJoining).toISOString().split("T")[0]
+                new Date(employee.dateOfJoining).toDateString()
+              }
               role={employee.role}
               status={employee.status}
               experience={employee.experience.toString()}

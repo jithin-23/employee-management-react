@@ -1,26 +1,34 @@
 import { lazy, Suspense, useState } from "react";
 import Header from "../../components/headers/Header";
 import "./CreateEmployee.css";
-import { EMPLOYEE_ACTION_TYPES } from "../../store/employee/employee.types";
+import {
+  EMPLOYEE_ACTION_TYPES,
+  EmployeeRole,
+  EmployeeStatus,
+} from "../../store/employee/employee.types";
 import { useDispatch } from "react-redux";
-import store from "../../store/store";
+import store, { useAppDispatch } from "../../store/store";
+import { addEmployee } from "../../store/employee/employeeReducer";
+import { useCreateEmployeesMutation } from "../../api-service/employees/employees.api";
+import type { CreateEmployePayload } from "../../api-service/employees/types";
+import { useNavigate } from "react-router-dom";
 
 const EmployeeForm = lazy(
   () => import("../../components/employee_form/EmployeeForm")
 );
 
 const CreateEmployee = () => {
-  const [values, setValues] = useState({
-    employeeId: "",
+  const [values, setValues] = useState<CreateEmployePayload>({
+    employee_id: "",
     name: "",
     password: "",
     email: "",
-    age: "",
+    age: 0,
     dateOfJoining: "",
-    departmentId: "",
-    status: "",
-    role: "",
-    experience: "",
+    department_id: 1,
+    status: EmployeeStatus.INACTIVE,
+    role: EmployeeRole.DEVELOPER,
+    experience: 0,
     address: {
       houseNo: "",
       line1: "",
@@ -29,7 +37,28 @@ const CreateEmployee = () => {
     },
   });
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  // const dispatch = useAppDispatch();
+
+  const [triggerCreateEmployee] = useCreateEmployeesMutation();
+  const navigate = useNavigate();
+
+  const handleCreate = () => {
+    
+    if (!values.dateOfJoining)
+      values.dateOfJoining = new Date().toISOString().slice(0, 10);
+    console.log("Payload being sent:", JSON.stringify(values, null, 2)); 
+
+    triggerCreateEmployee(values)
+      .unwrap()
+      .then((response) => {
+        console.log("Employee Created Succesfully", response);
+        navigate("/employee")
+      })
+      .catch((error) => {
+        console.error("Error creating employee:", error);
+      });
+  };
 
   return (
     <div className="create-employee-body">
@@ -53,8 +82,10 @@ const CreateEmployee = () => {
               setValues({ ...values, [field]: value });
             }
           }}
-          onClick={() =>
-            dispatch({ type: EMPLOYEE_ACTION_TYPES.ADD, payload: values })
+          onClick={
+            handleCreate
+            // dispatch({ type: EMPLOYEE_ACTION_TYPES.ADD, payload: values })
+            // dispatch(addEmployee(values))
           }
         />
       </Suspense>

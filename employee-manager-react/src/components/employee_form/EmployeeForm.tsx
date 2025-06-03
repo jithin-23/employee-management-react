@@ -1,13 +1,13 @@
+import dayjs from "dayjs";
+import { useGetAllDepartmentsQuery } from "../../api-service/department/department.api";
+import type { Department } from "../../store/department/department.types";
 import type {
   Address,
   Role,
   Status,
 } from "../../store/employee/employee.types";
-import {
-  departmentOptions,
-  roleOptions,
-  statusOptions,
-} from "../../types/InputOptions";
+import { roleOptions, statusOptions } from "../../types/InputOptions";
+import type { Options } from "../../types/SelectType";
 import InputBox from "../input_box/InputBox";
 import SelectBox from "../select_box/SelectBox";
 import "./EmployeeForm.css";
@@ -24,21 +24,33 @@ const EmployeeForm = ({
   type: EmployeeFormTypes;
   empId?: string;
   values: {
-    employeeId: string;
+    employee_id: string;
     email: string;
     name: string;
-    age: string;
+    age: number;
     address: Address;
     password: string;
     role: string;
     dateOfJoining: string;
-    experience: string;
+    experience: number;
     status: string;
-    departmentId: string;
+    department_id: number;
   };
-  onChange: (field: string, value: string) => void;
+  onChange: (field: string, value: string | number) => void;
   onClick?: () => void;
 }) => {
+
+  const { data = [] } = useGetAllDepartmentsQuery({});
+  const departments: Department[] = data;
+  
+  const departmentOptions: Options[] = departments.map((department) => ({
+    text: department.name,
+    value: department.id,
+  }));
+
+  const dateString = values.dateOfJoining || new Date().toISOString()
+  const date = dayjs(dateString).format("YYYY-MM-DD")
+
   return (
     <form>
       <div className="formContent">
@@ -47,12 +59,12 @@ const EmployeeForm = ({
             id="empId"
             placeholder="Employee ID"
             type="text"
-            value={values.employeeId}
+            value={values.employee_id}
             label="Employee ID"
             disabled={type === "edit" ? true : false}
             className={type === "edit" ? "disabled" : ""}
             onChange={(event) => {
-              onChange("employeeId", event.target.value);
+              onChange("employee_id", event.target.value);
             }}
           />
 
@@ -76,6 +88,8 @@ const EmployeeForm = ({
             onChange={(event) => {
               onChange("password", event.target.value);
             }}
+            className={type === "edit" ? "disabled" : ""}
+            disabled={type === "edit" ? true : false}
           />
 
           <InputBox
@@ -94,15 +108,16 @@ const EmployeeForm = ({
             placeholder="Age"
             type="number"
             label="Age"
-            value={values.age}
+            value={values.age.toString()}
             onChange={(event) => {
-              onChange("age", event.target.value);
+              onChange("age", Number(event.target.value));
             }}
           />
 
           <InputBox
             id="joiningDate"
-            value={values.dateOfJoining}
+            // value={(dayjs(values.dateOfJoining)).format('dd-mm-yyyy')}
+            value={date}
             placeholder="Joining Date"
             type="date"
             label="Joining Date"
@@ -115,9 +130,9 @@ const EmployeeForm = ({
             id="department"
             label="Department"
             options={departmentOptions}
-            value={values.departmentId}
+            value={values.department_id.toString()}
             onChange={(event) => {
-              onChange("departmentId", event.target.value);
+              onChange("department_id", Number(event.target.value));
             }}
           />
 
@@ -187,12 +202,12 @@ const EmployeeForm = ({
 
           <InputBox
             id="experience"
-            value={values.experience}
+            value={values.experience.toString()}
             placeholder="Experience"
             type="number"
             label="Experience"
             onChange={(event) => {
-              onChange("experience", event.target.value);
+              onChange("experience", Number(event.target.value));
             }}
           />
         </div>
@@ -206,7 +221,7 @@ const EmployeeForm = ({
           /> */}
 
           <button
-            value= {type === "edit" ? "Save" : "Create"}
+            value={type === "edit" ? "Save" : "Create"}
             className="form-create-btn"
             type="button"
             id="create"

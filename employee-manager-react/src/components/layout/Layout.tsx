@@ -10,18 +10,18 @@ const Layout = () => {
     return token === "true";
   };
   const navigate = useNavigate();
-
-
   if (!isLoggedIn()) return <Navigate to="/login" />;
 
+  
   const handleLogout = () => {
     localStorage.setItem("isloggedIn", JSON.stringify(false));
+    localStorage.removeItem("token");
     navigate("/login");
   };
 
   return (
     <div>
-      <div className="logout-box">     
+      <div className="logout-box">
         <button className="logout-btn" type="button" onClick={handleLogout}>
           Log Out
         </button>

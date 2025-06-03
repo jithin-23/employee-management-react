@@ -1,21 +1,25 @@
 import { useDispatch } from "react-redux";
 import "./PopupWindow.css";
 import { EMPLOYEE_ACTION_TYPES } from "../../store/employee/employee.types";
+import { useDeleteEmployeeMutation } from "../../api-service/employees/employees.api";
 
 const PopupWindow = ({
   onClick,
-  employeeId,
+  id,
 }: {
   onClick: (value: boolean) => void;
-  employeeId: string;
+  id: string;
 }) => {
   const dispatch = useDispatch();
   const handleCancel = () => {
     onClick(false);
   };
 
+  const [triggerDelete] = useDeleteEmployeeMutation();
+
   const handleSubmit = () => {
-    dispatch({ type: EMPLOYEE_ACTION_TYPES.DELETE, payload: employeeId });
+    // dispatch({ type: EMPLOYEE_ACTION_TYPES.DELETE, payload: id });
+    triggerDelete( {id:id})
     onClick(false);
   };
 

@@ -1,0 +1,119 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Login Page > should match snapshot 1`] = `
+<div>
+  <div
+    class="body-content"
+  >
+    <div
+      class="login-left"
+    >
+      <div
+        class="login-image-container"
+      >
+        <img
+          alt="Login Page Image"
+          class="login-image"
+          src="/assets/kv-login.jpeg"
+        />
+      </div>
+    </div>
+    <div
+      class="login-right"
+    >
+      <div
+        class="content"
+      >
+        <img
+          alt="Keyvalue Logo"
+          class="input-page-logo"
+          src="/assets/kv-logo.png"
+        />
+        <div
+          class="form-content"
+        >
+          <label
+            for="username"
+          >
+            Username
+          </label>
+          <div
+            class="input-wrapper"
+          >
+            <input
+              class="login-input-field input-undefined"
+              id="username"
+              name="username"
+              placeholder="Username"
+              required=""
+              type="text"
+              value=""
+            />
+            <button
+              class="input-box-btn"
+              disabled=""
+              type="button"
+            >
+              clear
+            </button>
+          </div>
+          <label
+            for="password"
+          >
+            Password
+          </label>
+          <div
+            class="input-wrapper"
+          >
+            <input
+              class="login-input-field input-input-box-field"
+              id="password"
+              name="username"
+              placeholder="Password"
+              required=""
+              type="password"
+              value=""
+            />
+            <button
+              class="input-box-btn "
+              disabled=""
+              type="button"
+            >
+              clear
+            </button>
+          </div>
+          <label
+            class="error-label"
+          >
+            Password must be greater than 8 characters
+          </label>
+          <div
+            class="checkbox-group"
+          >
+            <input
+              id="show_password"
+              name="show_password"
+              type="checkbox"
+            />
+            <label
+              for="show_password"
+            >
+              Show Password
+            </label>
+          </div>
+          <p />
+          <button
+            class="login-btn"
+            disabled=""
+            title="Log In"
+            type="submit"
+          >
+            Log In
+             
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
