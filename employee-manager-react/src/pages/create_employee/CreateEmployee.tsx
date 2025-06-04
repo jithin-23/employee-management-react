@@ -29,10 +29,10 @@ const CreateEmployee = () => {
     status: EmployeeStatus.INACTIVE,
     role: EmployeeRole.DEVELOPER,
     experience: 0,
-    address: {
-      houseNo: "",
+    address: {   
       line1: "",
       line2: "",
+      houseNo: "",
       pincode: "",
     },
   });

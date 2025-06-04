@@ -1,18 +1,17 @@
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
-import Header from "../headers/Header";
-import Sidebar from "../sidebar/Sidebar";
+import Sidebar from "./sidebar/Sidebar";
 import "./Layout.css";
-import { useEffect } from "react";
 
 const Layout = () => {
+
+  const navigate = useNavigate();
+
   const isLoggedIn = () => {
     const token = localStorage.getItem("isloggedIn");
     return token === "true";
   };
-  const navigate = useNavigate();
   if (!isLoggedIn()) return <Navigate to="/login" />;
 
-  
   const handleLogout = () => {
     localStorage.setItem("isloggedIn", JSON.stringify(false));
     localStorage.removeItem("token");
@@ -26,9 +25,7 @@ const Layout = () => {
           Log Out
         </button>
       </div>
-
       <Sidebar />
-
       <div className="layout-content">
         <Outlet />
       </div>

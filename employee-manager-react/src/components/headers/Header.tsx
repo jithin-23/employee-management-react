@@ -3,7 +3,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import HeaderButton, {
   type HeaderButtonTypes,
-} from "../header_button/HeaderButton";
+} from "./header_button/HeaderButton";
 import { statusOptions } from "../../types/InputOptions";
 
 interface HeaderProps {
@@ -47,7 +47,7 @@ const Header = ({ title, filterby = false, headerBtn, empId }: HeaderProps) => {
               <option value="all">All</option>
 
               {availableStatusOptions.map((item) => {
-                return <option value={item.value}>{item.text}</option>;
+                return <option key={item.value} value={item.value}>{item.text}</option>;
               })}
             </select>
           </div>

@@ -32,7 +32,7 @@ const EditEmployee = () => {
 
   const { data } = useGetEmployeeByIdQuery({ id });
   const employee: Employee = data;
-  console.log(employee);
+  // console.log(employee);
 
   // const dispatch = useDispatch();
   // const dispatch = useAppDispatch();
@@ -49,33 +49,31 @@ const EditEmployee = () => {
     role: EmployeeRole.DEVELOPER,
     experience: 0,
     address: {
-      houseNo: "",
       line1: "",
       line2: "",
+      houseNo: "",
       pincode: "",
     },
   });
 
   useEffect(() => {
-    if(!employee) return;
+    if (!employee) return;
     setValues({
       employee_id: employee.employeeId,
       name: employee.name,
       password: employee.password,
       email: employee.email,
       age: employee.age,
-      // dateOfJoining: new Date(employee.dateOfJoining)
-      //   .toISOString()
-      //   .split("T")[0],
+      // dateOfJoining: new Date(employee.dateOfJoining).toISOString().split("T")[0],
       dateOfJoining: employee.dateOfJoining,
       department_id: employee.department.id,
       status: employee.status,
       role: employee.role,
       experience: employee.experience,
       address: {
-        houseNo: employee.address.line1,
-        line1: employee.address.line2,
-        line2: employee.address.houseNo,
+        line1: employee.address.line1,
+        line2: employee.address.line2,
+        houseNo: employee.address.houseNo,
         pincode: employee.address.pincode,
       },
     });
@@ -85,7 +83,7 @@ const EditEmployee = () => {
   const navigate = useNavigate();
 
   const handleUpdate = () => {
-    if(!id) return <>Employee Id not available </>;
+    if (!id) return <>Employee Id not available </>;
     triggerUpdateEmployee({ payload: values, id: id })
       .unwrap()
       .then((response) => {
@@ -96,7 +94,6 @@ const EditEmployee = () => {
         console.error("Error creating employee:", error);
       });
   };
-
 
   return (
     <div className="edit-employee-body">

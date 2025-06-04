@@ -25,7 +25,7 @@ const EmployeeDetails = () => {
   const { data } = useGetEmployeeByIdQuery({ id });
   const employee: Employee = data;
 
-  console.log(employee);
+  // console.log(employee);
   return (
     <div>
       <Header title="Employee Details" headerBtn="edit" empId={id} />
@@ -50,7 +50,8 @@ const EmployeeDetails = () => {
           <div className="details-card">
             <span className="details-card-title">Joining Date</span>
             <span className="details-card-subtitle">
-              {new Date(employee.dateOfJoining).toISOString().split("T")[0]}
+              {/* {new Date(employee.dateOfJoining).toString()} */}
+              {new Date(employee.dateOfJoining).toDateString()}
             </span>
           </div>
 

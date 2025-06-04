@@ -26,7 +26,7 @@ const Employees = () => {
   // const {data:employees} = useGetEmployeesQuery({});
   const { data = [] } = useGetEmployeesQuery({});
   const employees = data;
-  console.log(employees)
+  // console.log(employees)
 
   const filteredEmployees = status
     ? employees.filter((employee: Employee) => employee.status === status)
@@ -57,7 +57,7 @@ const Employees = () => {
               name={employee.name}
               employee_id={employee.employeeId}
               joinDate={
-                // new Date(employee.dateOfJoining).toISOString().split("T")[0]
+                // new Date(employee.dateOfJoining).toString()
                 new Date(employee.dateOfJoining).toDateString()
               }
               role={employee.role}

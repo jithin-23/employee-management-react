@@ -18,7 +18,7 @@ const SelectBox = (props: SelectStatus) => {
         </option>
         {props.options.map((item) => {
           return (
-            <option className="input-field" value={item.value}>
+            <option key={item.value} className="input-field" value={item.value}>
               {item.text}
             </option>
           );

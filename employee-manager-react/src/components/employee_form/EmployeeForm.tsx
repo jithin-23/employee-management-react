@@ -1,11 +1,7 @@
 import dayjs from "dayjs";
 import { useGetAllDepartmentsQuery } from "../../api-service/department/department.api";
 import type { Department } from "../../store/department/department.types";
-import type {
-  Address,
-  Role,
-  Status,
-} from "../../store/employee/employee.types";
+import type { Address } from "../../store/employee/employee.types";
 import { roleOptions, statusOptions } from "../../types/InputOptions";
 import type { Options } from "../../types/SelectType";
 import InputBox from "../input_box/InputBox";
@@ -39,17 +35,19 @@ const EmployeeForm = ({
   onChange: (field: string, value: string | number) => void;
   onClick?: () => void;
 }) => {
-
   const { data = [] } = useGetAllDepartmentsQuery({});
   const departments: Department[] = data;
-  
+
   const departmentOptions: Options[] = departments.map((department) => ({
     text: department.name,
     value: department.id,
   }));
 
-  const dateString = values.dateOfJoining || new Date().toISOString()
-  const date = dayjs(dateString).format("YYYY-MM-DD")
+  const dateString = values.dateOfJoining || new Date().toISOString();
+  const date = dayjs(dateString).format("YYYY-MM-DD");
+
+  // const rawDate = new Date(values.dateOfJoining); // your existing date
+  // const formattedDate = rawDate.toISOString().split("T")[0]; // "2023-12-27"
 
   return (
     <form>
@@ -118,6 +116,14 @@ const EmployeeForm = ({
             id="joiningDate"
             // value={(dayjs(values.dateOfJoining)).format('dd-mm-yyyy')}
             value={date}
+            // value={new Date(values.dateOfJoining).toISOString().split("T")[0]}
+            // value={values.dateOfJoining}
+            // value={formattedDate}
+            // value={
+            //   values.dateOfJoining
+            //     ? new Date(values.dateOfJoining).toISOString().split("T")[0]
+            //     : ""
+            // }
             placeholder="Joining Date"
             type="date"
             label="Joining Date"
