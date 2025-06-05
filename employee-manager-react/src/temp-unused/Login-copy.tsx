@@ -1,12 +1,12 @@
 import "./Login.css";
 import { useEffect, useRef, useState } from "react";
-import MousePosition from "../../temp-unused/mousePosition.ts";
+import MousePosition from "./mousePosition.ts";
 import { useNavigate } from "react-router-dom";
-import { UseLocalStorage } from "../../hooks/useLocalStorage.ts";
-import Input from "./inputs/Input.tsx";
-import { useLoginMutation } from "../../api-service/auth/login.api.ts";
+import { UseLocalStorage } from "../hooks/useLocalStorage.ts";
+import Input from "../pages/login/inputs/Input.tsx";
+import { useLoginMutation } from "../api-service/auth/login.api.ts";
 
-const Login = () => {
+const Login2 = () => {
   const [error, setError] = useState("");
   const [login, { isLoading }] = useLoginMutation();
   const [username, setUsername] = useState("");
@@ -47,6 +47,15 @@ const Login = () => {
   }, []);
 
   const handleSubmit = async () => {
+    // localStorage.setItem("username", username);
+    // localStorage.setItem("password", password);
+
+    // const response = await login({ email: username, password: password });
+    // if (response.data?.accesstoken) {
+    //   localStorage.setItem("token", response.data.accesstoken);
+    //   navigate("/employee");
+    // }
+
     login({ email: username, password: password })
       .unwrap()
       .then((response) => {
@@ -70,13 +79,13 @@ const Login = () => {
           ></img>
         </div>
       </div>
+      {/* <Counter/> */}
+      {/* <label className="">
+        x:{position.x} y:{position.y}
+      </label> */}
       <div className="login-right">
         <div className="content">
-          <img
-            className="input-page-logo"
-            src="/assets/kv-logo.png"
-            alt="Keyvalue Logo"
-          />
+          <img className="input-page-logo" src="/assets/kv-logo.png" alt="Keyvalue Logo" />
           <div className="form-content">
             <Input
               type="text"
@@ -100,10 +109,9 @@ const Login = () => {
               }
             />
             {username.length >= 30 && (
-              <label className="error-label">
-                Username must be less than 30 characters
-              </label>
+              <label className="error-label">{labelText}</label>
             )}
+            
 
             <Input
               className="input-box-field"
@@ -126,7 +134,7 @@ const Login = () => {
                 </button>
               }
             />
-            {passwordError && password.length > 0 && (
+            {passwordError && (
               <label className="error-label">
                 Password must be greater than 8 characters
               </label>
@@ -144,15 +152,13 @@ const Login = () => {
               <label htmlFor="show_password">Show Password</label>
             </div>
 
-            <span className="login-error-text">{error}</span>
+            <p>{error}</p>
             <button
               title="Log In"
               className="login-btn"
               onClick={handleSubmit}
               ref={submitButtonRef}
-              disabled={
-                isLoading && username.length <= 30 && password.length >= 8
-              }
+              disabled={isLoading}
               type="submit"
             >
               Log In{" "}
@@ -164,4 +170,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login2;

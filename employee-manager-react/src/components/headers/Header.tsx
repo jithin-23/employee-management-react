@@ -1,5 +1,5 @@
 import "./Header.css";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import HeaderButton, {
   type HeaderButtonTypes,
@@ -13,7 +13,6 @@ interface HeaderProps {
   empId?: string;
 }
 const Header = ({ title, filterby = false, headerBtn, empId }: HeaderProps) => {
-  const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [filter, setFilter] = useState<string>("");
 

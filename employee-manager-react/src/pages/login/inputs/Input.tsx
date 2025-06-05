@@ -39,7 +39,7 @@ const Input = ({
         value={value}
         required
       />
-
+      <label htmlFor={id}>{placeholder}</label>
       {endAdornment && endAdornment}
     </div>
   );

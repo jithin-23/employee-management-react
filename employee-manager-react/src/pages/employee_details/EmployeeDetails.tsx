@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import Header from "../../components/headers/Header";
-import dummyEmployees from "../../data/DummyData";
+import dummyEmployees from "../../temp-unused/data/DummyData";
 import "./EmployeeDetails.css";
-import StatusCell from "../employees/components/status_cell/StatusCell";
+import StatusCell from "../../components/status_cell/StatusCell";
 import { useSelector } from "react-redux";
 import type { Employee } from "../../store/employee/employee.types";
 import { useAppSelector } from "../../store/store";
@@ -13,19 +13,10 @@ import {
 
 const EmployeeDetails = () => {
   const { id } = useParams();
-  // const employees = dummyEmployees;
-
-  // const employee = employees.find((data) => data.empId === id);
-
-  // const employees = useSelector((state) => state.employees);
-
-  // const employees = useAppSelector(state => state.employee.employees)
-  // const employee = employees.find((data: Employee) => data.employeeId === id);
 
   const { data } = useGetEmployeeByIdQuery({ id });
   const employee: Employee = data;
 
-  // console.log(employee);
   return (
     <div>
       <Header title="Employee Details" headerBtn="edit" empId={id} />

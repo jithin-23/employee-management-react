@@ -1,7 +1,6 @@
-import type EmployeeType from "../types/EmployeeType";
 
 //Dummy Data
-const dummyEmployees: EmployeeType[] = [
+const dummyEmployees= [
   {
     name: "Micheal Scott",
     empId: "E100",

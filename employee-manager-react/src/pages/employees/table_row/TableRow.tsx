@@ -1,10 +1,10 @@
 import "./TableRow.css";
 import { MdOutlineEdit } from "react-icons/md";
 import { FaRegTrashCan } from "react-icons/fa6";
-import StatusCell from "../status_cell/StatusCell";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import PopupWindow from "../../../../components/pop_up/PopupWindow";
+import StatusCell from "../../../components/status_cell/StatusCell";
+import PopupWindow from "../../../components/pop_up/PopupWindow";
 
 interface TableRowProps {
   id:string

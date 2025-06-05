@@ -48,7 +48,6 @@ export type UpdateEmployePayload = {
     employee_id: string;
     age: number;
     name: string;
-    // password: string;
     role: string;
     status: string;
     dateOfJoining: string;
@@ -63,21 +62,3 @@ export type UpdateEmployePayload = {
   };
 };
 
-// {
-//     "email" : "Manu@gmail.com",
-//     "employee_id": "KV1231",
-//     "age": 24,
-//     "name": "Manu",
-//     "password": "password",
-//     "role" : "UX",
-//     "address": {
-//         "line1": "Thrissur",
-//         "line2": "ABC",
-//         "houseNo": "456",
-//         "pincode": "600000"
-//     },
-//     "department_id": 5,
-//     "experience" : 3,
-//     "status" :"PROBATION",
-//     "dateOfJoining": "2010-10-10"
-// }

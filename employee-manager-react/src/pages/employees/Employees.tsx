@@ -1,33 +1,16 @@
-import Header from "../../components/headers/Header";
-import "./Employees.css";
-
-import TableRow from "./components/table_row/TableRow";
-import type EmployeeType from "../../types/EmployeeType";
-import dummyEmployees from "../../data/DummyData";
 import { useSearchParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import store, { useAppDispatch, useAppSelector } from "../../store/store";
-import type {
-  Employee,
-  EmployeeState,
-} from "../../store/employee/employee.types";
 import { useGetEmployeesQuery } from "../../api-service/employees/employees.api";
+import type { Employee } from "../../store/employee/employee.types";
+import Header from "../../components/headers/Header";
+import TableRow from "./table_row/TableRow";
+import "./Employees.css";
 
 const Employees = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const status = searchParams.get("status");
-
-  // const data = useSelector(state => state.employees)
-  // const data = useAppSelector((state) => state.employee.employees);
-
-  // const employees: Employee[] = data;
-  // const employees: EmployeeType[] = dummyEmployees;
-
-  // const {data:employees} = useGetEmployeesQuery({});
   const { data = [] } = useGetEmployeesQuery({});
-  const employees = data;
-  // console.log(employees)
 
+  const employees = data;
   const filteredEmployees = status
     ? employees.filter((employee: Employee) => employee.status === status)
     : employees;

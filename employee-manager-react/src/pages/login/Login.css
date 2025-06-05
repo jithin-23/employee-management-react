@@ -59,13 +59,13 @@ label.error-label {
     color: #ff0000;
     background-color: #ffa3a3;
     padding: 5px;
+    margin-bottom: 5px;
 }
 
 .checkbox-group {
     display: flex;
     gap: 10px;
     padding :5px;
-    margin-top:5px;
 }
 
 .login-btn {
@@ -82,4 +82,16 @@ label.error-label {
 .login-btn:disabled {
     background-color: grey;
 }
+
+.input-page-logo {
+    width: 50%;
+    margin-left: 10px;
+}
+
+.login-error-text {
+    color: #e74c3c; 
+    margin-top: 4px;
+    font-weight: 800;
+  }
+  
 

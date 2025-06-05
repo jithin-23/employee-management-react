@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import CreateEmployee from "./pages/create_employee/CreateEmployee";
 import Login from "./pages/login/Login";
-import UncontrolledLogin from "./pages/login/uncontrolled_login.tsx/unontrolled_inputs";
+import UncontrolledLogin from "./temp-unused/uncontrolled_login.tsx/uncontrolled_inputs";
 import Layout from "./components/layout/Layout";
 import NotFound from "./pages/not_found/NotFound";
 import EmployeeDetails from "./pages/employee_details/EmployeeDetails";
@@ -35,12 +35,13 @@ const router = createBrowserRouter([
     element: <NotFound />,
   },
 ]);
+
 function App() {
   return (
-    
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
+    // <UncontrolledLogin/>
   );
 }
 

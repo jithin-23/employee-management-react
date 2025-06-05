@@ -3,7 +3,7 @@ import EmployeeForm from "../../components/employee_form/EmployeeForm";
 import Header from "../../components/headers/Header";
 import "./EditEmployee.css";
 import { useEffect, useState } from "react";
-import dummyEmployees from "../../data/DummyData";
+import dummyEmployees from "../../temp-unused/data/DummyData";
 import { useDispatch, useSelector } from "react-redux";
 import {
   EMPLOYEE_ACTION_TYPES,
@@ -22,20 +22,9 @@ import dayjs from "dayjs";
 
 const EditEmployee = () => {
   const { id } = useParams();
-  // const employees = dummyEmployees;
-  // const employee = employees.find((data) => data.empId === id);
-  // if (!employee) return <>Employee Not Found</>;
-
-  // const employees = useSelector((state) => state.employees);
-  // const employees = useAppSelector(state => state.employee.employees)
-  // const employee = employees.find((data: Employee) => data.employeeId === id);
 
   const { data } = useGetEmployeeByIdQuery({ id });
   const employee: Employee = data;
-  // console.log(employee);
-
-  // const dispatch = useDispatch();
-  // const dispatch = useAppDispatch();
 
   const [values, setValues] = useState<CreateEmployePayload>({
     employee_id: "",
@@ -64,7 +53,6 @@ const EditEmployee = () => {
       password: employee.password,
       email: employee.email,
       age: employee.age,
-      // dateOfJoining: new Date(employee.dateOfJoining).toISOString().split("T")[0],
       dateOfJoining: employee.dateOfJoining,
       department_id: employee.department.id,
       status: employee.status,
@@ -88,7 +76,7 @@ const EditEmployee = () => {
       .unwrap()
       .then((response) => {
         console.log("Employee Updated Succesfully", response);
-        navigate("/employee");
+        navigate(-1);
       })
       .catch((error) => {
         console.error("Error creating employee:", error);
@@ -117,7 +105,6 @@ const EditEmployee = () => {
           }
         }}
         onClick={handleUpdate}
-        // onClick={() => dispatch({ type: EMPLOYEE_ACTION_TYPES.UPDATE, payload: values })}
       />
     </div>
   );
